@@ -1,7 +1,7 @@
 # Личный проект «TaskForce»
 
 * Студент: [Алексей](https://up.htmlacademy.ru/yii/1/user/1470531).
-* Наставник: `Неизвестно`.
+* Наставник: [Алексей Петров](https://htmlacademy.ru/profile/id1231631).
 
 ---
 
