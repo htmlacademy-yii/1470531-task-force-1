@@ -32,9 +32,9 @@ class Task
             $this->currentStatus = self::STATUS_NEW;
 
             return $this->currentStatus;
-        } else {
-            throw new Exception('Пользователь должен быть создателем задачи');
         }
+
+        throw new Exception('Пользователь должен быть создателем задачи');
     }
 
     public function start(): string
@@ -43,9 +43,9 @@ class Task
             $this->currentStatus = self::STATUS_STARTED;
 
             return $this->currentStatus;
-        } else {
-            throw new Exception('Пользователь должен быть создателем задачи');
         }
+
+        throw new Exception('Пользователь должен быть создателем задачи');
     }
 
     public function complete(): string
@@ -54,9 +54,9 @@ class Task
             $this->currentStatus = self::STATUS_COMPLETED;
 
             return $this->currentStatus;
-        } else {
-            throw new Exception('Пользователь должен быть создателем задачи');
         }
+
+        throw new Exception('Пользователь должен быть создателем задачи');
     }
 
     public function cancel(): string
@@ -65,9 +65,9 @@ class Task
             $this->currentStatus = self::STATUS_CANCELED;
 
             return $this->currentStatus;
-        } else {
-            throw new Exception('Пользователь должен быть создателем задачи');
         }
+
+        throw new Exception('Пользователь должен быть создателем задачи');
     }
 
     public function fail(): string
@@ -76,9 +76,9 @@ class Task
             $this->currentStatus = self::STATUS_FAILED;
 
             return $this->currentStatus;
-        } else {
-            throw new Exception('Пользователь не должен быть создателем задачи');
         }
+
+        throw new Exception('Пользователь не должен быть создателем задачи');
     }
 
     public function getAvailableStatuses(): array
