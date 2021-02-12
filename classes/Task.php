@@ -1,6 +1,7 @@
 <?php
 
 namespace classes;
+
 use Exception;
 
 class Task
