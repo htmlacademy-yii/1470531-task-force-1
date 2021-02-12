@@ -1,25 +1,9 @@
 <?php
 
 namespace classes;
+use Exception;
 
-interface iTask
-{
-    public function create(): string;
-
-    public function start(): string;
-
-    public function complete(): string;
-
-    public function cancel(): string;
-
-    public function fail(): string;
-
-    public function getAvailableStatuses(): array;
-
-    public function getCurrentStatus(): string;
-}
-
-class Task implements iTask
+class Task
 {
     const STATUS_NEW = 'new';
     const STATUS_STARTED = 'started';
@@ -48,7 +32,7 @@ class Task implements iTask
 
             return $this->currentStatus;
         } else {
-            throw new Exception('Пользователь должен быть создателем лота');
+            throw new Exception('Пользователь должен быть создателем задачи');
         }
     }
 
@@ -59,7 +43,7 @@ class Task implements iTask
 
             return $this->currentStatus;
         } else {
-            throw new Exception('Пользователь должен быть создателем лота');
+            throw new Exception('Пользователь должен быть создателем задачи');
         }
     }
 
@@ -70,7 +54,7 @@ class Task implements iTask
 
             return $this->currentStatus;
         } else {
-            throw new Exception('Пользователь должен быть создателем лота');
+            throw new Exception('Пользователь должен быть создателем задачи');
         }
     }
 
@@ -81,7 +65,7 @@ class Task implements iTask
 
             return $this->currentStatus;
         } else {
-            throw new Exception('Пользователь должен быть создателем лота');
+            throw new Exception('Пользователь должен быть создателем задачи');
         }
     }
 
@@ -92,7 +76,7 @@ class Task implements iTask
 
             return $this->currentStatus;
         } else {
-            throw new Exception('Пользователь не должен быть создателем лота');
+            throw new Exception('Пользователь не должен быть создателем задачи');
         }
     }
 
@@ -140,8 +124,3 @@ class Task implements iTask
         }
     }
 }
-
-$task = new Task(1, 1);
-
-assert($task->getCurrentStatus() === Task::STATUS_COMPLETED, print('complete task'));
-
