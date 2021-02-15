@@ -1,6 +1,6 @@
 <?php
 
-use Taskforce\Classes\Task;
+use Taskforce\Models\Task;
 
 require_once '../../config.php';
 
