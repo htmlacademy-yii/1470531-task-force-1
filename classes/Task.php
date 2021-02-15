@@ -16,17 +16,17 @@ class Task
     const ACTION_REFUSE = 'refuse';
     const ACTION_COMPLETE = 'complete';
 
-    private $creatorId;
-    private $userId;
-    private $currentStatus = self::STATUS_NEW;
+    private int $creatorId;
+    private int $userId;
+    private string $currentStatus = self::STATUS_NEW;
 
-    public function __construct($creatorId, $userId)
+    public function __construct(int $creatorId, int $userId)
     {
         $this->creatorId = $creatorId;
         $this->userId = $userId;
     }
 
-    public function create()
+    public function create(): string
     {
         if ($this->userId === $this->creatorId) {
             $this->currentStatus = self::STATUS_NEW;
@@ -37,7 +37,7 @@ class Task
         throw new Exception('Пользователь должен быть создателем задачи');
     }
 
-    public function start()
+    public function start(): string
     {
         if ($this->userId === $this->creatorId) {
             $this->currentStatus = self::STATUS_STARTED;
@@ -48,7 +48,7 @@ class Task
         throw new Exception('Пользователь должен быть создателем задачи');
     }
 
-    public function complete()
+    public function complete(): string
     {
         if ($this->userId === $this->creatorId) {
             $this->currentStatus = self::STATUS_COMPLETED;
@@ -59,7 +59,7 @@ class Task
         throw new Exception('Пользователь должен быть создателем задачи');
     }
 
-    public function cancel()
+    public function cancel(): string
     {
         if ($this->userId === $this->creatorId) {
             $this->currentStatus = self::STATUS_CANCELED;
@@ -70,7 +70,7 @@ class Task
         throw new Exception('Пользователь должен быть создателем задачи');
     }
 
-    public function fail()
+    public function fail(): string
     {
         if ($this->userId !== $this->creatorId) {
             $this->currentStatus = self::STATUS_FAILED;
@@ -81,7 +81,7 @@ class Task
         throw new Exception('Пользователь не должен быть создателем задачи');
     }
 
-    public function getAvailableStatuses()
+    public function getAvailableStatuses(): array
     {
         switch ($this->currentStatus) {
             case self::STATUS_NEW:
@@ -97,12 +97,12 @@ class Task
         }
     }
 
-    public function getCurrentStatus()
+    public function getCurrentStatus(): string
     {
         return $this->currentStatus;
     }
 
-    private function getTranslatedConstant(string $constant)
+    private function getTranslatedConstant(string $constant): string
     {
         switch ($constant) {
             case self::STATUS_NEW:
