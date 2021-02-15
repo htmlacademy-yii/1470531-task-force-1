@@ -1,0 +1,17 @@
+{
+  "name": "ivanov/taskforce",
+  "description": "freelance exchange project",
+  "type": "project",
+  "authors": [
+    {
+      "name": "Alexey Ivanov",
+      "email": "4985900@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Taskforce\\": "src/"
+    }
+  },
+  "require": {}
+}

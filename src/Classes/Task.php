@@ -1,6 +1,6 @@
 <?php
 
-namespace classes;
+namespace Taskforce\Classes;
 
 use Exception;
 

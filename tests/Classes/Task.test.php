@@ -1,8 +1,8 @@
 <?php
 
-require_once '../../classes/Task.php';
+use Taskforce\Classes\Task;
 
-use classes\Task;
+require_once '../../config.php';
 
 $task = new Task(1, 2);
 
