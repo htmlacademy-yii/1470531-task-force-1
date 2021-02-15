@@ -1,6 +1,6 @@
 <?php
 
-require_once 'classes/Task.php';
+require_once '../../classes/Task.php';
 
 use classes\Task;
 
@@ -26,5 +26,17 @@ $availableStatuses = [
 
 assert($task->getCurrentStatus() === Task::STATUS_COMPLETED, 'Wrong task status');
 assert($task->getAvailableStatuses() === $availableStatuses, 'Wrong available statuses');
-assert($task->start() === Task::STATUS_STARTED, 'Wrong task status');
-assert($task->complete() === Task::STATUS_COMPLETED, 'Wrong task status');
+
+try {
+    $task->start();
+} catch (Exception $e) {
+    my_assert_handler(null, null, null, "Test Customer can't start task - OK");
+    echo '</br>';
+}
+
+try {
+    $task->complete();
+} catch (Exception $e) {
+    my_assert_handler(null, null, null, "Test Customer can't complete task - OK");
+    echo '</br>';
+}
