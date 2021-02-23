@@ -3,27 +3,40 @@
 namespace Taskforce\Models;
 
 use Exception;
+use Taskforce\Models\Actions\AbstractAction;
+use Taskforce\Models\Actions\CancelAction;
+use Taskforce\Models\Actions\CompleteAction;
+use Taskforce\Models\Actions\RefuseAction;
+use Taskforce\Models\Actions\RespondAction;
 
 class Task
 {
-    const STATUS_NEW = 'new';
-    const STATUS_STARTED = 'started';
-    const STATUS_COMPLETED = 'completed';
-    const STATUS_CANCELED = 'canceled';
-    const STATUS_FAILED = 'failed';
-    const ACTION_RESPOND = 'respond';
-    const ACTION_CANCEL = 'cancel';
-    const ACTION_REFUSE = 'refuse';
-    const ACTION_COMPLETE = 'complete';
+    public const STATUS_NEW = 'new';
+    public const STATUS_STARTED = 'started';
+    public const STATUS_COMPLETED = 'completed';
+    public const STATUS_CANCELED = 'canceled';
+    public const STATUS_FAILED = 'failed';
 
     private int $creatorId;
+    private int $executorId;
     private int $userId;
     private string $currentStatus = self::STATUS_NEW;
 
-    public function __construct(int $creatorId, int $userId)
+    private AbstractAction $Cancel;
+    private AbstractAction $Complete;
+    private AbstractAction $Refuse;
+    private AbstractAction $Respond;
+
+    public function __construct(int $creatorId, int $executorId, int $userId)
     {
         $this->creatorId = $creatorId;
+        $this->executorId = $executorId;
         $this->userId = $userId;
+
+        $this->Cancel = new CancelAction($creatorId, $executorId, $userId);
+        $this->Complete = new CompleteAction($creatorId, $executorId, $userId);
+        $this->Refuse = new RefuseAction($creatorId, $executorId, $userId);
+        $this->Respond = new RespondAction($creatorId, $executorId, $userId);
     }
 
     public function create(): string
@@ -94,6 +107,34 @@ class Task
                     self::STATUS_COMPLETED => $this->getTranslatedConstant(self::STATUS_COMPLETED),
                     self::STATUS_FAILED => $this->getTranslatedConstant(self::STATUS_FAILED)
                 ];
+            default:
+                return [];
+        }
+    }
+
+    public function getAvailableAction(): string
+    {
+        switch ($this->currentStatus) {
+            case self::STATUS_NEW:
+                if ($this->Cancel->isAllowed()) {
+                    return $this->Cancel->getInternalName();
+                }
+
+                if ($this->Respond->isAllowed()) {
+                    return $this->Respond->getInternalName();
+                }
+                break;
+            case self::STATUS_STARTED:
+                if ($this->Complete->isAllowed()) {
+                    return $this->Complete->getInternalName();
+                }
+
+                if ($this->Refuse->isAllowed()) {
+                    return $this->Refuse->getInternalName();
+                }
+                break;
+            default:
+                return '';
         }
     }
 
@@ -114,14 +155,9 @@ class Task
             case self::STATUS_FAILED:
                 return 'Провалено';
             case self::STATUS_COMPLETED:
-            case self::ACTION_COMPLETE:
                 return 'Выполнено';
-            case self::ACTION_RESPOND:
-                return 'Откликнуться';
-            case self::ACTION_CANCEL:
-                return 'Отменить';
-            case self::ACTION_REFUSE:
-                return 'Отказаться';
+            default:
+                return '';
         }
     }
 }
