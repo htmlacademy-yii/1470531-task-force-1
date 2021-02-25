@@ -4,7 +4,7 @@ use Taskforce\Models\Task;
 
 require_once '../../config.php';
 
-$task = new Task(1, 2);
+$task = new Task(1, 2, 1);
 
 // Активация утверждений и отключение вывода ошибок
 assert_options(ASSERT_ACTIVE, 1);
