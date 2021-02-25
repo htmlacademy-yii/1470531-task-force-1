@@ -52,7 +52,7 @@ class Task
 
     public function start(): string
     {
-        if ($this->userId === $this->creatorId) {
+        if ($this->Respond->isAllowed()) {
             $this->currentStatus = self::STATUS_STARTED;
 
             return $this->currentStatus;
@@ -63,7 +63,7 @@ class Task
 
     public function complete(): string
     {
-        if ($this->userId === $this->creatorId) {
+        if ($this->Complete->isAllowed()) {
             $this->currentStatus = self::STATUS_COMPLETED;
 
             return $this->currentStatus;
@@ -74,7 +74,7 @@ class Task
 
     public function cancel(): string
     {
-        if ($this->userId === $this->creatorId) {
+        if ($this->Cancel->isAllowed()) {
             $this->currentStatus = self::STATUS_CANCELED;
 
             return $this->currentStatus;
@@ -85,7 +85,7 @@ class Task
 
     public function fail(): string
     {
-        if ($this->userId !== $this->creatorId) {
+        if ($this->Refuse->isAllowed()) {
             $this->currentStatus = self::STATUS_FAILED;
 
             return $this->currentStatus;
