@@ -6,7 +6,7 @@ namespace Taskforce\Models\Actions;
 
 class RespondAction extends AbstractAction
 {
-    public function __construct(int $creatorId, int $executorId, int $userId)
+    public function __construct(int $creatorId, ?int $executorId, int $userId)
     {
         parent::__construct($creatorId, $executorId, $userId);
 

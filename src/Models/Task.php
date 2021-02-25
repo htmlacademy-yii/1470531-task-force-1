@@ -2,7 +2,7 @@
 
 namespace Taskforce\Models;
 
-use Exception;
+use Taskforce\Exceptions\PermissionException;
 use Taskforce\Models\Actions\AbstractAction;
 use Taskforce\Models\Actions\CancelAction;
 use Taskforce\Models\Actions\CompleteAction;
@@ -18,7 +18,7 @@ class Task
     public const STATUS_FAILED = 'failed';
 
     private int $creatorId;
-    private int $executorId;
+    private ?int $executorId;
     private int $userId;
     private string $currentStatus = self::STATUS_NEW;
 
@@ -27,7 +27,7 @@ class Task
     private AbstractAction $Refuse;
     private AbstractAction $Respond;
 
-    public function __construct(int $creatorId, int $executorId, int $userId)
+    public function __construct(int $creatorId, ?int $executorId, int $userId)
     {
         $this->creatorId = $creatorId;
         $this->executorId = $executorId;
@@ -47,51 +47,51 @@ class Task
             return $this->currentStatus;
         }
 
-        throw new Exception('Пользователь должен быть создателем задачи');
+        throw new PermissionException('Пользователь должен быть создателем задачи');
     }
 
     public function start(): string
     {
-        if ($this->userId === $this->creatorId) {
+        if ($this->Respond->isAllowed()) {
             $this->currentStatus = self::STATUS_STARTED;
 
             return $this->currentStatus;
         }
 
-        throw new Exception('Пользователь должен быть создателем задачи');
+        throw new PermissionException('Пользователь должен быть создателем задачи');
     }
 
     public function complete(): string
     {
-        if ($this->userId === $this->creatorId) {
+        if ($this->Complete->isAllowed()) {
             $this->currentStatus = self::STATUS_COMPLETED;
 
             return $this->currentStatus;
         }
 
-        throw new Exception('Пользователь должен быть создателем задачи');
+        throw new PermissionException('Пользователь должен быть создателем задачи');
     }
 
     public function cancel(): string
     {
-        if ($this->userId === $this->creatorId) {
+        if ($this->Cancel->isAllowed()) {
             $this->currentStatus = self::STATUS_CANCELED;
 
             return $this->currentStatus;
         }
 
-        throw new Exception('Пользователь должен быть создателем задачи');
+        throw new PermissionException('Пользователь должен быть создателем задачи');
     }
 
     public function fail(): string
     {
-        if ($this->userId !== $this->creatorId) {
+        if ($this->Refuse->isAllowed()) {
             $this->currentStatus = self::STATUS_FAILED;
 
             return $this->currentStatus;
         }
 
-        throw new Exception('Пользователь не должен быть создателем задачи');
+        throw new PermissionException('Пользователь не должен быть создателем задачи');
     }
 
     public function getAvailableStatuses(): array
