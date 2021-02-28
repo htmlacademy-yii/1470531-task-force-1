@@ -40,14 +40,14 @@ CREATE TABLE profile
     id         BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     last_login TIMESTAMP,
-    birthday   TIMESTAMP,
+    birthday   DATE,
     about      TEXT,
     phone      VARCHAR(15),
     skype      VARCHAR(250),
     telegram   VARCHAR(250),
     avatar     TEXT,
     user_id    BIGINT UNSIGNED,
-    address    BIGINT UNSIGNED,
+    address    TEXT,
     FOREIGN KEY (user_id) REFERENCES user (id)
         ON DELETE SET NULL
         ON UPDATE SET NULL
