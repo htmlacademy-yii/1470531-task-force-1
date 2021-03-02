@@ -5,6 +5,7 @@ namespace frontend\models;
 use Yii;
 use yii\base\Model;
 
+// TODO: удалить стандартные модели
 /**
  * ContactForm is the model behind the contact form.
  */

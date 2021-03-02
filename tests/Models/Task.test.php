@@ -3,7 +3,7 @@
 use Taskforce\Exceptions\PermissionException;
 use Taskforce\Models\Task;
 
-require_once '../../config.php';
+require_once '../config.php';
 
 // Активация утверждений и отключение вывода ошибок
 assert_options(ASSERT_ACTIVE, 1);

@@ -9,6 +9,7 @@ use common\models\User;
 /**
  * Signup form
  */
+// TODO: удалить стандартные модели
 class SignupForm extends Model
 {
     public $username;

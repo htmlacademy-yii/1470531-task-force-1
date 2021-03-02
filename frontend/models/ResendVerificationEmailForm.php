@@ -7,6 +7,7 @@ use Yii;
 use common\models\User;
 use yii\base\Model;
 
+// TODO: удалить стандартные модели
 class ResendVerificationEmailForm extends Model
 {
     /**

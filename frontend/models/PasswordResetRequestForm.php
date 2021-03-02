@@ -6,6 +6,7 @@ use Yii;
 use yii\base\Model;
 use common\models\User;
 
+// TODO: удалить стандартные модели
 /**
  * Password reset request form
  */

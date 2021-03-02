@@ -7,6 +7,8 @@
 
 /* @var $exception Exception */
 
+// TODO: удалить стандартные шаблоны
+
 use yii\helpers\Html;
 
 $this->title = $name;
