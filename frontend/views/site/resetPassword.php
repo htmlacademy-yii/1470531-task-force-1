@@ -9,6 +9,8 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
+// TODO: удалить стандартные шаблоны
+
 $this->title = 'Reset password';
 $this->params['breadcrumbs'][] = $this->title;
 ?>

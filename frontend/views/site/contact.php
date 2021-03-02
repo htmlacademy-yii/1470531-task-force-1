@@ -6,6 +6,8 @@
 
 /* @var $model \frontend\models\ContactForm */
 
+// TODO: удалить стандартные шаблоны
+
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;

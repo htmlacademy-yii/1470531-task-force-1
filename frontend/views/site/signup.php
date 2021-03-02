@@ -9,6 +9,8 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
+// TODO: удалить стандартные шаблоны
+
 $this->title = 'Signup';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
