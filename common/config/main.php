@@ -10,5 +10,9 @@ return [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+        'formatter' => [
+            'language' => 'ru-RU'
+        ],
     ],
+    'name' => 'TaskForce',
 ];
