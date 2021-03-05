@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 $params = array_merge(
     require __DIR__ . '/../../common/config/params.php',
@@ -18,8 +18,11 @@ return [
     ],
     'controllerMap' => [
         'fixture' => [
-            'class' => 'yii\console\controllers\FixtureController',
+            'class' => 'yii\faker\FixtureController',
+            'templatePath' => '@common/fixtures/templates',
+            'fixtureDataPath' => '@common/fixtures/data',
             'namespace' => 'common\fixtures',
+            'count' => 20
         ],
     ],
     'components' => [

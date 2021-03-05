@@ -15,4 +15,5 @@ return [
         ],
     ],
     'name' => 'TaskForce',
+    'language' => 'ru-RU',
 ];
