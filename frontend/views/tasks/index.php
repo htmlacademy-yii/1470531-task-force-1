@@ -18,7 +18,8 @@ $this->title = 'Новые задания';
             <div class="new-task__card">
                 <div class="new-task__title">
                     <a href="#" class="link-regular"><h2><?= Html::encode($task['title']) ?></h2></a>
-                    <a class="new-task__type link-regular" href="#"><p><?= Html::encode($task['category']) ?></p></a>
+                    <a class="new-task__type link-regular" href="#"><p><?= Html::encode($task->category->title) ?></p>
+                    </a>
                 </div>
                 <div class="new-task__icon new-task__icon--translation"></div>
                 <p class="new-task_description">

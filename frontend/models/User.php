@@ -86,9 +86,9 @@ class User extends ActiveRecord
      *
      * @return ActiveQuery
      */
-    public function getProfiles()
+    public function getProfile()
     {
-        return $this->hasMany(Profile::className(), ['user_id' => 'id']);
+        return $this->hasOne(Profile::className(), ['user_id' => 'id']);
     }
 
     /**
