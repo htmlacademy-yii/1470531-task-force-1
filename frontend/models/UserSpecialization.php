@@ -2,8 +2,6 @@
 
 namespace frontend\models;
 
-use Yii;
-
 /**
  * This is the model class for table "user_specialization".
  *
@@ -12,8 +10,6 @@ use Yii;
  * @property int|null $user_id
  * @property int|null $specialization_id
  *
- * @property User $user
- * @property Specialization $specialization
  */
 class UserSpecialization extends \yii\db\ActiveRecord
 {
@@ -70,7 +66,8 @@ class UserSpecialization extends \yii\db\ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(User::className(), ['id' => 'user_id']);
+        return $this->hasMany(User::className(), ['id' => 'user_id'])->viaTable('user_specialization',
+            ['id' => 'user_id']);
     }
 
     /**
@@ -80,6 +77,7 @@ class UserSpecialization extends \yii\db\ActiveRecord
      */
     public function getSpecialization()
     {
-        return $this->hasOne(Specialization::className(), ['id' => 'specialization_id']);
+        return $this->hasOne(Specialization::className(),
+            ['id' => 'specialization_id'])->viaTable('user_specialization', ['id' => 'specialization_id']);
     }
 }
