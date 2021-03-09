@@ -36,8 +36,8 @@ $this->title = 'Исполнители';
             </div>
             <div class="link-specialization user__search-link--bottom">
                 <?php
-                foreach ($user->userSpecializations as $specialization): ?>
-                    <a href="#" class="link-regular"><?= $specialization['title'] ?></a>
+                foreach ($user->userSpecializations as $userSpecializations): ?>
+                    <a href="#" class="link-regular"><?= $userSpecializations->specialization->title ?></a>
                 <?php
                 endforeach; ?>
             </div>
